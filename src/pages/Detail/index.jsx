@@ -78,32 +78,11 @@ const Detail = () => {
         More Recipes
       </Typography>
 
-      <Grid
-        container
-        spacing={5}
-        style={{
-          maxWidth: "100vw",
-          overflow: "auto",
-          flexWrap: "nowrap",
-          padding: "3% 0%",
-        }}
-      >
+      <div className={classes.moreCardContainer}>
         {moreMeals?.map((meal, index) => {
-          return (
-            <Grid
-              item
-              key={index}
-              onClick={() => {
-                navigate(`/recipe/${meal?.name}`);
-                navigate(0);
-              }}
-              style={{ cursor: "pointer" }}
-            >
-              <MoreCard meal={meal} />
-            </Grid>
-          );
+          return <MoreCard meal={meal} key={index} />;
         })}
-      </Grid>
+      </div>
     </div>
   );
 };

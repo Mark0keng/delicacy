@@ -2,8 +2,28 @@
 
 .cardContainer {
   // padding: 0% 4%;
+  flex-direction: row;
   display: flex;
-  overflow: hidden;
+  gap: 20%;
+  overflow: auto;
+  // margin-left: 5%;
+}
+
+.cardContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.moreCardContainer {
+  height: 5%;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
   overflow-x: scroll;
-  gap: 0px 100px;
+  flex-wrap: nowrap;
+  padding: 5% 0%;
+}
+
+.moreCardContainer::-webkit-scrollbar {
+  display: none;
 }

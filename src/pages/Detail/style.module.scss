@@ -7,3 +7,18 @@
   border: 10px solid #fff;
   height: 100%;
 }
+
+.moreCardContainer {
+  // height: 5%;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+  padding: 5% 0%;
+}
+
+.moreCardContainer::-webkit-scrollbar {
+  display: none;
+}

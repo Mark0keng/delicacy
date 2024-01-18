@@ -120,24 +120,11 @@ const Home = () => {
           </Typography>
         </Grid>
       </Grid> */}
-      {/* <div className={classes.cardContainer}> */}
-      <Grid
-        container
-        style={{
-          maxHeight: "100vh",
-          overflow: "auto",
-          flexDirection: "column",
-        }}
-      >
+      <div className={classes.cardContainer}>
         {meals?.map((meal, index) => {
-          return (
-            <Grid item key={index} style={{ width: "90vw" }}>
-              <DetailCard meal={meal} param={meal?.name} />
-            </Grid>
-          );
+          return <DetailCard key={index} meal={meal} param={meal?.name} />;
         })}
-      </Grid>
-      {/* </div> */}
+      </div>
 
       <Typography
         variant="h6"
@@ -153,31 +140,10 @@ const Home = () => {
         More Recipes
       </Typography>
 
-      <div>
-        <Grid
-          container
-          spacing={2}
-          style={{
-            maxWidth: "100vw",
-            overflow: "auto",
-            flexWrap: "nowrap",
-            padding: "3% 0%",
-          }}
-        >
-          {moreMeals?.map((meal, index) => {
-            return (
-              <Grid
-                item
-                key={index}
-                onClick={() => {
-                  navigate(`/recipe/${meal?.name}`);
-                }}
-              >
-                <MoreCard meal={meal} />
-              </Grid>
-            );
-          })}
-        </Grid>
+      <div className={classes.moreCardContainer}>
+        {moreMeals?.map((meal, index) => {
+          return <MoreCard meal={meal} key={index} />;
+        })}
       </div>
     </div>
   );

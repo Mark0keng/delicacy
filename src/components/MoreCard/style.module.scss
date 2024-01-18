@@ -1,12 +1,15 @@
 @import "../../styles/base.scss";
 
 .card {
-  min-width: 12.5vw;
-  min-height: 10vw;
+  min-width: 20%;
+  height: max-content;
   position: relative;
-  @include justifyCenter; // padding: 10% 10%;
-  padding-top: 35%;
-  padding-bottom: 5%;
+  @include justifyCenter;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 70px;
+  padding-bottom: 50px;
   padding-left: 5%;
   padding-right: 5%;
   background: $background-color;

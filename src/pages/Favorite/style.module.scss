@@ -1,1 +1,10 @@
 @import "../../styles/base.scss";
+
+.favoriteContainer {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+}
