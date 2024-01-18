@@ -1,0 +1,24 @@
+{
+  "favorites": [
+    {
+      "id": "52803",
+      "name": "Beef Wellington",
+      "thumb": "https://www.themealdb.com/images/media/meals/vvpprx1487325699.jpg"
+    },
+    {
+      "id": "52878",
+      "name": "Beef and Oyster pie",
+      "thumb": "https://www.themealdb.com/images/media/meals/wrssvt1511556563.jpg"
+    },
+    {
+      "id": "53071",
+      "name": "Beef Asado",
+      "thumb": "https://www.themealdb.com/images/media/meals/pkopc31683207947.jpg"
+    },
+    {
+      "id": "52997",
+      "name": "Beef Banh Mi Bowls with Sriracha Mayo, Carrot & Pickled Cucumber",
+      "thumb": "https://www.themealdb.com/images/media/meals/z0ageb1583189517.jpg"
+    }
+  ]
+}

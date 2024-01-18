@@ -1,0 +1,9 @@
+@import "../../styles/base.scss";
+
+.cardContainer {
+  // padding: 0% 4%;
+  display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
+  gap: 0px 100px;
+}
