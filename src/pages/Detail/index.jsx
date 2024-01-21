@@ -1,22 +1,25 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import DetailCard from "../../components/DetailCard";
 import Navbar from "../../components/Navbar";
 import { useEffect, useState } from "react";
 import { callAPI } from "../../domain/api";
 
 import classes from "./style.module.scss";
-import { Grid, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import MoreCard from "../../components/MoreCard";
 
 const Detail = () => {
   const { name } = useParams();
   const [meal, setMeal] = useState([]);
   const [moreMeals, setMoreMeals] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchMeal();
   }, []);
+
+  useEffect(() => {
+    fetchMeal();
+  }, [name]);
 
   const fetchMeal = async () => {
     try {
@@ -40,20 +43,25 @@ const Detail = () => {
         };
       });
 
+      setMeal(resultDetail[0]);
+
       const fetchMore = await callAPI(
         `/filter.php?c=${resultDetail[0].category}`,
         "GET"
       );
-      const resultMore = fetchMore?.meals?.map((item) => {
-        return {
-          name: item.strMeal,
-          thumb: item.strMealThumb,
-        };
-      });
 
-      // console.log(modifiedData[0].category);
+      const resultMore = fetchMore?.meals?.reduce((result, item) => {
+        if (item.strMeal !== resultDetail[0].name) {
+          result.push({
+            name: item.strMeal,
+            thumb: item.strMealThumb,
+          });
+        }
+
+        return result;
+      }, []);
+
       setMoreMeals(resultMore);
-      setMeal(resultDetail[0]);
     } catch (error) {
       console.log(error);
     }

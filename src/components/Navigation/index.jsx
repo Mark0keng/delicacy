@@ -1,24 +1,21 @@
+/* eslint-disable react/prop-types */
 import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { callAPI } from "../../domain/api";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Navigation = () => {
-  const [searchParams] = useSearchParams();
-  const [activeMenu, setActiveMenu] = useState(
-    searchParams.get("menu") || "Beef"
-  );
+const Navigation = ({ active }) => {
+  const [activeMenu, setActiveMenu] = useState("Beef");
   const [menu, setMenu] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchMenu();
-    setActiveMenu(searchParams.get("menu"));
   }, []);
 
   useEffect(() => {
-    setActiveMenu(searchParams.get("menu"));
-  }, [activeMenu]);
+    active ? setActiveMenu(active) : setActiveMenu("Beef");
+  }, [active]);
 
   const fetchMenu = async () => {
     try {
@@ -36,8 +33,6 @@ const Navigation = () => {
     }
   };
 
-  console.log(activeMenu);
-
   return (
     <Grid container spacing={2} paddingLeft={7} paddingBottom={3}>
       {menu?.map((item, index) => {
@@ -52,7 +47,6 @@ const Navigation = () => {
               }}
               onClick={() => {
                 navigate({ pathname: "/", search: `?menu=${item.name}` });
-                navigate(0);
               }}
             >
               {item.name}

@@ -4,12 +4,12 @@ import axios from "axios";
 import classes from "./style.module.scss";
 
 import { callAPI } from "../../domain/api";
-import { Grid, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import Navbar from "../../components/Navbar";
 import DetailCard from "../../components/DetailCard";
 import MoreCard from "../../components/MoreCard";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Navigation from "../../components/Navigation";
 
 const Home = () => {
@@ -21,11 +21,13 @@ const Home = () => {
     searchParams.get("menu") || "Beef"
   );
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     fetchMeals();
   }, []);
+
+  useEffect(() => {
+    setActiveCategory(searchParams.get("menu"));
+  }, [searchParams]);
 
   useEffect(() => {
     fetchMeals();
@@ -53,7 +55,7 @@ const Home = () => {
         (response) => {
           return response?.map((item) => {
             const response = item.data.meals[0];
-            console.log(response);
+
             return {
               id: response.idMeal,
               name: response.strMeal,
@@ -83,43 +85,7 @@ const Home = () => {
     <div className={classes.container}>
       <Navbar />
       <Navigation active={activeCategory} />
-      {/* <Grid container spacing={2} paddingLeft={7} paddingBottom={3}>
-        {categories?.map((category, index) => {
-          return (
-            <Grid item xs={"auto"} key={index} style={{}}>
-              <Typography
-                variant="h6"
-                gutterBottom
-                style={{
-                  cursor: "pointer",
-                  color:
-                    activeCategory === category.name ? "#404040" : "#969696",
-                }}
-                onClick={() => {
-                  setActiveCategory(category.name);
-                }}
-              >
-                {category.name}
-              </Typography>
-            </Grid>
-          );
-        })}
-        <Grid item xs={1} style={{}}>
-          <Typography
-            variant="h6"
-            gutterBottom
-            style={{
-              cursor: "pointer",
-              color: "#969696",
-            }}
-            onClick={() => {
-              navigate("/favorites");
-            }}
-          >
-            Favorites
-          </Typography>
-        </Grid>
-      </Grid> */}
+
       <div className={classes.cardContainer}>
         {meals?.map((meal, index) => {
           return <DetailCard key={index} meal={meal} param={meal?.name} />;

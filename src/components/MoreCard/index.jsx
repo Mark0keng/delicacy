@@ -2,28 +2,28 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import classes from "./style.module.scss";
 import { Button } from "@mui/material";
-import { useEffect } from "react";
 import axios from "axios";
 
-const MoreCard = ({ meal }) => {
+const MoreCard = ({ meal, refetch }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  console.log(pathname);
-
-  // useEffect(() => {
-  //   deleteFavorite();
-  // }, [meal]);
 
   const deleteFavorite = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/favorites/${id}`);
+      await refetch();
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className={classes.card}>
+    <div
+      className={classes.card}
+      onClick={() => {
+        navigate(`/recipe/${meal.name}`);
+      }}
+    >
       <div className={classes.thumbContainer}>
         <img src={meal?.thumb} alt="thumb-meal" className={classes.thumb} />
       </div>
@@ -36,7 +36,6 @@ const MoreCard = ({ meal }) => {
           color="error"
           onClick={() => {
             deleteFavorite(meal.id);
-            navigate(0);
           }}
         >
           Remove from Favorite

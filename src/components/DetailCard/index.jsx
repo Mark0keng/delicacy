@@ -24,13 +24,18 @@ const DetailCard = ({ meal, param }) => {
   const fetchFavorite = async () => {
     try {
       const res = await axios
-        .get(`http://localhost:3000/favorites/${meal?.id}`)
+        .get(`http://localhost:3000/favorites`)
         .then((response) => {
           return response;
         });
-      if (res) setFavorite(true);
+
+      const finalRes = res?.data?.filter((item) => {
+        return item.id == meal.id;
+      });
+
+      finalRes.length !== 0 ? setFavorite(true) : setFavorite(false);
     } catch (error) {
-      console.log("Favorit tidak ditemukan");
+      console.log(error);
     }
   };
 
